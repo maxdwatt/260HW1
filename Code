@@ -1,0 +1,61 @@
+def main():
+  n = input("Please enter an integer: ")
+  n = int(n)
+  if(n < 0):
+      print("The binary representation of this value is: ")
+      print(Ndtob(n))
+      print("The hex representation of this value is: ")
+      print(btoh(Ndtob(n)))
+  if(n > -1):
+      print("The binary representation of this value is: ")
+      print(dtob(n))
+      print("The hex representation of this value is: ")
+      print(btoh(dtob(n)))
+  
+  return
+  
+def dtob(n):
+    b = 0
+    t = n
+    c = 0
+    while(t > 0):
+        b = ((t%2)*(10**c)) + b
+        t = int(t/2)
+        c = c + 1
+    ##padding with 0's 
+    b = str(b)
+    while(len(b) < 32):
+        b = '0' + b
+    return b
+    
+def Ndtob(n):
+    n = n -n - n; 
+    b = 0
+    t = n
+    c = 0
+    while(t > 0):
+        b = ((t%2)*(10**c)) + b
+        t = int(t/2)
+        c = c + 1
+    ##padding with 0's 
+    b = str(b)
+    b = b[::-1]
+    while(len(b) < 31):
+        b = '0' + b
+    b = '1' + b
+    return b
+
+def btoh(b):
+    final = ''
+    h = ['0','0000','1','0001','2','0010','3','0011','4','0100','5','0101','6','0110','7','0111','8','1000','9','1001','A','1010','B','1011','C','1100','D','1101','E','1110','F','1111']
+    ##THE LETTER IS ALWAYS BEFRE THE BINARY NUMBER
+    split = [b[0:4],b[4:8],b[8:12],b[12:16],b[16:20],b[20:24],b[24:28],b[28:32]]
+    for i in split:
+        for j in h:
+            if(i == j):
+                final = final + (h[h.index(j) - 1])
+    return final
+    
+    
+    
+main()
